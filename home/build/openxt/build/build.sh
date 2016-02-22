@@ -20,6 +20,9 @@ SUBNET_PREFIX="192.168"
 
 # -- End of script configuration settings.
 
+BUILDID=$1
+BRANCH=$2
+
 umask 0022
 
 BUILD_USER="$(whoami)"
@@ -117,6 +120,8 @@ build_container() {
             -e "s|\%BUILD_DIR\%|${BUILD_DIR}|" \
             -e "s|\%SUBNET_PREFIX\%|${SUBNET_PREFIX}|" \
             -e "s|\%IP_C\%|${IP_C}|" \
+            -e "s|\%BUILDID\%|${BUILDID}|" \
+            -e "s|\%BRANCH\%|${BRANCH}|" \
             -e "s|\%ALL_BUILDS_SUBDIR_NAME\%|${ALL_BUILDS_SUBDIR_NAME}|" |\
         ssh -t -t -i "${BUILD_USER_HOME}"/ssh-key/openxt \
             -oStrictHostKeyChecking=no build@${CONTAINER_IP}
