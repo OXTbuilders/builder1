@@ -35,8 +35,7 @@ ALL_BUILDS_SUBDIR_NAME="xt-builds"
 ALL_BUILDS_DIRECTORY="${BUILD_USER_HOME}/${ALL_BUILDS_SUBDIR_NAME}"
 if [ -z $1 ] ; then
     BUILD_DIR_PREFIX=$(date +%y%m%d)
-
-#FIXME: the sorting in this isnt quite correct:
+    #FIXME: the sorting in this isnt quite correct:
     COUNTER=$(/bin/ls -1d "${ALL_BUILDS_DIRECTORY}/${BUILD_DIR_PREFIX}"-* \
                       2>/dev/null | \
               sort -nr | \
@@ -112,7 +111,7 @@ build_container() {
 
     # Remove old builds
     ssh -i "${BUILD_USER_HOME}"/ssh-key/openxt -oStrictHostKeyChecking=no \
-	build@${CONTAINER_IP} "rm -rf 1*"
+        build@${CONTAINER_IP} "rm -rf 1*"
     
     # Build
     cat $NAME/build.sh | \
