@@ -58,7 +58,7 @@ for i in /home/git/${BUILD_USER}/*.git; do
     git fetch --all > /dev/null 2>&1
     git log -1 --pretty='tformat:%H'
     cd - > /dev/null
-done | tee /tmp/git_heads_$BUILD_USER
+done | tee ${BUILD_DIR_PATH}/git_heads
 
 # Start the git service if needed
 ps -p `cat /tmp/openxt_git.pid 2>/dev/null` >/dev/null 2>&1 || {
@@ -128,6 +128,7 @@ build_container "03" "centos"
 
 # Put everything in the OE directory, like it was before
 #   to avoid having to change recipes like the opkg repos one
+mv ${BUILD_DIR_PATH}/git_heads ${BUILD_DIR_PATH}/oxt-dev-*
 mv ${BUILD_DIR_PATH}/debian ${BUILD_DIR_PATH}/oxt-dev-*
 mv ${BUILD_DIR_PATH}/rpms ${BUILD_DIR_PATH}/oxt-dev-*
 
