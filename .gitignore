@@ -47,3 +47,4 @@
 /var/lib/buildbot/masters/buildmaster/.htpasswd
 /var/lib/buildbot/masters/buildmaster/gitpoller-workdir/
 /var/lib/buildbot/masters/buildmaster/openxt/
+/var/lib/buildbot/masters/buildmaster/gitpoller-work/
