@@ -52,8 +52,15 @@ ret=${PIPESTATUS[0]}
 
 # TODO: figure out `do_build.sh -s packages_tree`, which probably requires fixing the step first...
 
+echo "The build is done, sending the output to the main server now."
+
 # Copy the build output
 scp -r build-output/* "${BUILD_USER}@${SUBNET_PREFIX}.${IP_C}.1:${ALL_BUILDS_SUBDIR_NAME}/${BUILD_DIR}/"
+
+echo "Done."
+
+# Update the oe download cache on the main server
+./do_build.sh -i $BUILDID -s sync_cache_back
 
 # The script may run in an "ssh -t -t" environment, that won't exit on its own
 set +e
