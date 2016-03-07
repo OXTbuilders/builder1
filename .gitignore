@@ -42,6 +42,7 @@
 # Re-ignore the files/directories we don't want
 *~
 *.log
+*.log.*
 *.pid
 *sqlite*
 /var/lib/buildbot/masters/buildmaster/.htpasswd
