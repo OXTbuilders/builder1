@@ -55,7 +55,7 @@ ret=${PIPESTATUS[0]}
 echo "The build is done, sending the output to the main server now."
 
 # Copy the build output
-scp -r build-output/* "${BUILD_USER}@${SUBNET_PREFIX}.${IP_C}.1:${ALL_BUILDS_SUBDIR_NAME}/${BUILD_DIR}/"
+rsync -a build-output/ "${BUILD_USER}@${SUBNET_PREFIX}.${IP_C}.1:${ALL_BUILDS_SUBDIR_NAME}/${BUILD_DIR}/"
 
 echo "Done."
 
