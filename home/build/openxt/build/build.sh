@@ -37,8 +37,8 @@ BUILD_DIR_PREFIX=$(date +%y%m%d)
 #FIXME: the sorting in this isnt quite correct:
 COUNTER=$(/bin/ls -1d "${ALL_BUILDS_DIRECTORY}/${BUILD_DIR_PREFIX}"-* \
                   2>/dev/null | \
-		 sort -nr | \
-		 sed -e 's/^.*-//' -n  -e 1p)
+                  sort -nr | \
+                  sed -e 's/^.*-//' -n  -e 1p)
 COUNTER=$((COUNTER + 1))
 BUILD_DIR="${BUILD_DIR_PREFIX}-${COUNTER}"
 
@@ -56,7 +56,7 @@ for i in /home/git/${BUILD_USER}/*.git; do
     echo -n "Fetching `basename $i`: "
     cd $i
     git fetch --all > /dev/null 2>&1
-    git log -1 --pretty='tformat:%H'
+    git log $BRANCH -1 --pretty='tformat:%H'
     cd - > /dev/null
 done | tee ${BUILD_DIR_PATH}/git_heads
 
