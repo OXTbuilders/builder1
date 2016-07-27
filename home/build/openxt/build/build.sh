@@ -56,7 +56,7 @@ for i in /home/git/${BUILD_USER}/*.git; do
     echo -n "Fetching `basename $i`: "
     cd $i
     git fetch --all > /dev/null 2>&1
-    git log $BRANCH -1 --pretty='tformat:%H'
+    git log $BRANCH -1 --pretty='tformat:%H' || echo "No $BRANCH branch"
     cd - > /dev/null
 done | tee ${BUILD_DIR_PATH}/git_heads
 
